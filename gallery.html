@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filterable Gallery</title>
+    <link rel="stylesheet" href="Style.css" />
+</head>
+
+<body>
+    <section>
+        <ul>
+            <li class="list active" data-filters="all">ALL</li>
+            <li class="list" data-filters="CLOTHING">CLOTHING</li>
+            <li class="list" data-filters="FLOWERS">FLOWERS</li>
+            <li class="list" data-filters="FOOD">FOOD</li>
+            <li class="list" data-filters="SWEETS">SWEETS</li>
+        </ul>
+        <div class="product">
+            <div class="itemBox" data-item="CLOTHING"><img src="CLOTHES1.jpg" width="200" height="200"></div>
+            <div class="itemBox" data-item="FLOWERS"><img src="FLOWERS1.jpg" width="200" height="200"></div>
+            <div class="itemBox" data-item="FOOD"><img src="FOOD1.jpg" width="200" height="200"></div>
+            <div class="itemBox" data-item="SWEETS"><img src="SWEETS.jpg" width="200" height="200"></div>
+            <div class="itemBox" data-item="CLOTHING"><img src="CLOTHES2.jpg" width="200" height="200"></div>
+            <div class="itemBox" data-item="CLOTHING"><img src="CLOTHES3.jpg" width="200" height="200"></div>
+            <div class="itemBox" data-item="FLOWERS"><img src="FLOWERS2.jpg" width="200" height="200"></div>
+            <div class="itemBox" data-item="FLOWERS"><img src="FLOWERS4.jpg" width="200" height="200"></div>
+            <div class="itemBox" data-item="FOOD"><img src="FOOD2.jpg" width="200" height="200"></div>
+            <div class="itemBox" data-item="FOOD"><img src="FOOD.jpg" width="200" height="200"></div>
+        </div>
+    </section>
+    <script>
+        let list = document.querySelectorAll('.list');
+        let itemBox = document.querySelectorAll('.itemBox');
+
+        for (let i = 0; i < list.length; i++) {
+            list[i].addEventListener('click', function () {
+                for (let j = 0; j < list.length; j++) {
+                    list[j].classList.remove('active');
+                }
+                this.classList.add('active');
+
+                let dataFilter = this.getAttribute('data-filters');
+
+                for (let k = 0; k < itemBox.length; k++) {
+                    itemBox[k].classList.remove('active');
+                    itemBox[k].classList.add('hide');
+
+                    if (itemBox[k].getAttribute('data-item') == dataFilter || dataFilter == 'all') {
+                        itemBox[k].classList.remove('hide');
+                        itemBox[k].classList.add('active');
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
